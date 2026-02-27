@@ -207,7 +207,7 @@ const OurTeamBuilder = ({ menuId, pageKind = 'main' }: OurTeamBuilderProps) => {
     ['team_member_update', menuId, memberId, pageKind],
     {
       endpoint: `/team-members/${memberId}`,
-      options: { method: 'put' },
+      options: { method: 'post' },
     },
     {
       onSuccess: (response: any) => onSuccessPersist(response?.data || {}),
@@ -249,6 +249,9 @@ const OurTeamBuilder = ({ menuId, pageKind = 'main' }: OurTeamBuilderProps) => {
 
   const onSubmit = (form: FormValues) => {
     const payload = new FormData();
+    if (memberId) {
+        payload.append('_method', 'put');
+    }
     payload.append('menu_id', String(menuId));
     payload.append('full_name', JSON.stringify(form.full_name));
     payload.append('position', JSON.stringify(form.position));
