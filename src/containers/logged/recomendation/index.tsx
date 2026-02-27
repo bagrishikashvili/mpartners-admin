@@ -94,7 +94,7 @@ const Recomentation = ({}: any) => {
         ['recomendation_page_update'],
         {
             endpoint: '/recomendation',
-            options: { method: 'put' },
+            options: { method: 'post' },
         },
         {
         onSuccess: (response: any) => {
