@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.40c2209e.css",
+    "main.js": "/static/js/main.78a35457.js",
+    "static/js/453.75dabde4.chunk.js": "/static/js/453.75dabde4.chunk.js",
+    "static/media/bpg-arial-caps-webfont.svg": "/static/media/bpg-arial-caps-webfont.6b1ec6354c7ac0c7a8be.svg",
+    "static/media/bpg-arial-webfont.svg": "/static/media/bpg-arial-webfont.7939ff5ac155bd6cc836.svg",
+    "static/media/bpg-arial-webfont.eot": "/static/media/bpg-arial-webfont.904666a2cd8453e203c6.eot",
+    "static/media/bpg-arial-webfont.ttf": "/static/media/bpg-arial-webfont.d4eb8eab4d8bf2dd6519.ttf",
+    "static/media/PlusJakartaSans.ttf": "/static/media/PlusJakartaSans.91a892b057d3b1e6c20b.ttf",
+    "static/media/bpg-arial-caps-webfont.eot": "/static/media/bpg-arial-caps-webfont.20a2351539fc1234b669.eot",
+    "static/media/bpg-arial-caps-webfont.ttf": "/static/media/bpg-arial-caps-webfont.6c0cb06870e28fa1b314.ttf",
+    "static/media/bpg-arial-caps-webfont.woff": "/static/media/bpg-arial-caps-webfont.e8faac4e4de92922c012.woff",
+    "static/media/bpg-arial-webfont.woff": "/static/media/bpg-arial-webfont.62bc8e407904e897ec77.woff",
+    "static/media/bpg-arial-webfont.woff2": "/static/media/bpg-arial-webfont.3a195daa9f731cf69ef2.woff2",
+    "static/media/bpg-arial-caps-webfont.woff2": "/static/media/bpg-arial-caps-webfont.0d93125b82280e12e1ea.woff2",
+    "static/media/mark_success.svg": "/static/media/mark_success.8e46d9d0371cb9f4aa4c91e30f74bf0e.svg",
+    "static/media/mark_error.svg": "/static/media/mark_error.886b9ce7f784e076c6173a5311b7c902.svg",
+    "static/media/eye-negative.svg": "/static/media/eye-negative.cdfd21e17f2244673fe196c768a999cd.svg",
+    "static/media/eye.svg": "/static/media/eye.ae9bce479e644e4181fa34b783f54824.svg",
+    "static/media/close-x.svg": "/static/media/close-x.50b4761a071240fe21b65d6febaa06b4.svg",
+    "static/media/close-icon.svg": "/static/media/close-icon.f76ba70fd4fc700ecedc971e42b30c34.svg",
+    "index.html": "/index.html",
+    "main.40c2209e.css.map": "/static/css/main.40c2209e.css.map",
+    "main.78a35457.js.map": "/static/js/main.78a35457.js.map",
+    "453.75dabde4.chunk.js.map": "/static/js/453.75dabde4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.40c2209e.css",
+    "static/js/main.78a35457.js"
+  ]
+}

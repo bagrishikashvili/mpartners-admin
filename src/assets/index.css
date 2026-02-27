@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('./fonts/PlusJakartaSans.ttf');
+    ascent-override: 90%;
+    font-display: swap;
+}
+
+@font-face {
+  font-family: 'BPG Arial';
+  src: url('./fonts/arial/bpg-arial-webfont.eot'); /* IE9 Compat Modes */
+  src: url('./fonts/arial/bpg-arial-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/arial/bpg-arial-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/arial/bpg-arial-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./fonts/arial/bpg-arial-webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/arial/bpg-arial-webfont.svg#bpg_arialregular') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'BPG Arial Caps';
+  src: url('./fonts/caps/bpg-arial-caps-webfont.eot'); /* IE9 Compat Modes */
+  src: url('./fonts/caps/bpg-arial-caps-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/caps/bpg-arial-caps-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/caps/bpg-arial-caps-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./fonts/caps/bpg-arial-caps-webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/caps/bpg-arial-caps-webfont.svg#bpg_arial_capsregular') format('svg'); /* Legacy iOS */
+}
+
+.caps {
+  font-family: 'BPG Arial Caps';
+}
+  
+#root {
+  height: 100%;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.rmdp-arrow {
+  border: solid rgba(30, 41, 50, 1);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: none;
+  display: none;
+  padding:0px;
+}
+
+
+input[type=time]::-webkit-datetime-edit-second-field {
+  display: none;
+}
+
+.ant-input:focus, .ant-input-focused {
+  border-color: #fff;
+  box-shadow: 0 0 0 0px rgba(5, 145, 255, 0.1);
+  outline: 0;
+}
+
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0.05; }
+  100% { opacity:1; }
+}
+@-o-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+.animate-flicker {
+   -webkit-animation: flickerAnimation 2s infinite;
+   -moz-animation: flickerAnimation 2s infinite;
+   -o-animation: flickerAnimation 2s infinite;
+    animation: flickerAnimation 2s infinite;
+}
