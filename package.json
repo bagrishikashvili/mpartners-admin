@@ -45,6 +45,7 @@
   "scripts": {
     "dev": "cross-env PORT=3004 react-scripts start",
     "start": "cross-env PORT=3004 react-scripts start",
+    "build-prod": "cross-env BUILD_PATH=../web/admin-panel react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
