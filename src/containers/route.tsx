@@ -16,7 +16,10 @@ import {
   MenuControlEdit,
   ContactSettings,
   DynamicMenuPage,
-  Recomendation
+  Recomendation,
+  NewsList,
+  NewsCreate,
+  NewsEdit
 } from "./logged"
 
 const Routes = () => {
@@ -49,6 +52,9 @@ const Routes = () => {
             <MainLayoutRoute path={["/pages/services/:id"]} exact component={DynamicMenuPage} />
             <MainLayoutRoute path={["/pages/:id"]} exact component={DynamicMenuPage} />
             <MainLayoutRoute path={["/recomendation"]} exact component={Recomendation} />
+            <MainLayoutRoute path={["/news"]} exact component={NewsList} />
+            <MainLayoutRoute path={["/news/create"]} exact component={NewsCreate} />
+            <MainLayoutRoute path={["/news/:id"]} exact component={NewsEdit} />
 
             <Redirect to="/" />
         </Switch>

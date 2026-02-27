@@ -35,6 +35,9 @@ const NavigationMenu = () => {
                     <NavLink to="/recomendation">რეკომენდაციები</NavLink>
                 </NavigationMenuLi>
                 <NavigationMenuLi>
+                    <NavLink to="/news">სიახლეები</NavLink>
+                </NavigationMenuLi>
+                <NavigationMenuLi>
                     <NavIsland>გვერდები</NavIsland>
                 </NavigationMenuLi>
                 {item?.data?.map((menu: any) => {

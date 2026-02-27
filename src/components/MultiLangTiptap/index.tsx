@@ -310,7 +310,7 @@ export function MultiLangTiptap<T extends FieldValues>({
                 </Typography>
               </Stack>
 
-              {isRequired ? <Chip size="small" variant="outlined" label={"Required: " + requiredLang.toUpperCase()} /> : null}
+              {isRequired ? <Chip size="small" variant="outlined" label={"აუცილებელია: " + requiredLang.toUpperCase()} /> : null}
             </Stack>
 
             <Tabs

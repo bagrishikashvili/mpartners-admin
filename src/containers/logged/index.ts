@@ -5,3 +5,6 @@ export {default as MenuControlEdit } from './menu-control/edit';
 export {default as ContactSettings } from './contact-settings';
 export {default as DynamicMenuPage } from './dynamic-pages';
 export {default as Recomendation } from './recomendation';
+export {default as NewsList } from './news';
+export {default as NewsCreate } from './news/create';
+export {default as NewsEdit } from './news/edit';
