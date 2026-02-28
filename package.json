@@ -45,7 +45,7 @@
   "scripts": {
     "dev": "sh -c 'set -a; . ./.env; set +a; cross-env PORT=3004 react-scripts start'",
     "start": "cross-env PORT=3004 react-scripts start",
-    "build-prod": "sh -c 'set -a; . ./.env.production; set +a; cross-env PORT=3004 react-scripts build'",
+    "build-prod": "sh -c 'set -a; . ./.env.production; set +a; cross-env PORT=3004 react-scripts build && cp ./.htaccess ./build/.htaccess && mkdir -p ../web/admin-panel && find ../web/admin-panel -mindepth 1 -maxdepth 1 -exec rm -rf {} + && cp -a ./build/. ../web/admin-panel/'",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
