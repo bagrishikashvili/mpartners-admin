@@ -40,9 +40,10 @@ const NavigationMenu = () => {
                 <NavigationMenuLi>
                     <NavIsland>გვერდები</NavIsland>
                 </NavigationMenuLi>
-                {(item?.data ?? []).filter((x: any) => x.id !== 6).map((menu: any) => {
-                    const menuId = Number(menu?.id);
-                    const isExpandable = menuId === 4;
+                {(item?.data ?? []).filter((x: any) => x.id_name !== 'contact_us' && x.id_name !== 'news_and_analytics').map((menu: any) => {
+                    console.log('menu', menu)
+                    const menuId = menu?.id_name;
+                    const isExpandable = menuId === 'services';
                     const isExpanded = Boolean(expandedMenus[menuId]);
                     const subMenus = Array.isArray(menu?.sub_menus) ? menu.sub_menus : [];
 
