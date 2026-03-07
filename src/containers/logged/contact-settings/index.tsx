@@ -8,6 +8,8 @@ import UniversalInput from 'components/Input/UniversalInput';
 import { MultiLangInput } from 'components/MutliLanguageInput';
 import useQuery from 'hooks/useQueryCustom';
 import useMutationCustom from 'hooks/useMutationCustom';
+import LoadingScreen from 'components/Loading';
+import { useToasts } from 'react-toast-notifications';
 
 const languages = [
   { code: 'ka', label: 'ქართული', required: true },
@@ -65,6 +67,7 @@ const ContactSettings = () => {
     defaultValues,
     mode: 'onBlur',
   });
+  const { addToast } = useToasts();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -85,6 +88,11 @@ const ContactSettings = () => {
     {
       endpoint: '/settings/contact',
       options: { method: 'put' },
+    },
+    {
+      onSuccess: () => {
+        addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
+      },
     }
   );
 
@@ -124,6 +132,10 @@ const ContactSettings = () => {
 
     updateMutation.mutate(payload);
   };
+
+  if (isLoading) {
+    return <LoadingScreen/>
+  }
 
   return (
     <MainConatiner title='საკონტაქტო მონაცემები'>
@@ -233,4 +245,3 @@ const SectionTitle = styled.h4`
 `;
 
 export default ContactSettings;
-

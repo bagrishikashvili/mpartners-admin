@@ -7,7 +7,8 @@ import MainConatiner from 'partials/Container';
 import { MultiLangInput } from 'components/MutliLanguageInput';
 import useQuery from 'hooks/useQueryCustom';
 import useMutationCustom from 'hooks/useMutationCustom';
-
+import LoadingScreen from 'components/Loading';
+import { useToasts } from 'react-toast-notifications';
 type LocalizedText = {
   ka: string;
   en: string;
@@ -76,6 +77,7 @@ const Recomentation = ({}: any) => {
         defaultValues,
         mode: 'onBlur',
     });
+    const { addToast } = useToasts();
     const [wallpaperFile, setWallpaperFile] = useState<File | null>(null);
     const [wallpaperUrl, setWallpaperUrl] = useState<string>('');
     
@@ -102,6 +104,7 @@ const Recomentation = ({}: any) => {
             setWallpaperUrl(payload.wallpaper || '');
             setWallpaperFile(null);
             reset(mapIncomingToForm(payload));
+            addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
         },
         }
     );
@@ -137,6 +140,10 @@ const Recomentation = ({}: any) => {
             updateMutation.mutate(payload);
     };
 
+    if (isLoading) {
+      return <LoadingScreen/>
+    }
+    
     return (
         <MainConatiner title='რეკომენდაციების მართვა'>
             <Box component='form' onSubmit={handleSubmit(onSubmit)}>

@@ -10,7 +10,8 @@ import { MultiLangInput } from 'components/MutliLanguageInput';
 import { MultiLangTiptap } from 'components/MultiLangTiptap';
 import useQuery from 'hooks/useQueryCustom';
 import useMutationCustom from 'hooks/useMutationCustom';
-
+import LoadingScreen from 'components/Loading';
+import { useToasts } from 'react-toast-notifications';
 type LocalizedText = {
   ka: string;
   en: string;
@@ -129,6 +130,7 @@ const hasExperience = (value: Partial<LocalizedText> | undefined): boolean => {
 
 const OurTeamBuilder = ({ menuId, pageKind = 'main' }: OurTeamBuilderProps) => {
   const history = useHistory();
+  const { addToast } = useToasts();
   const location = useLocation();
   const [refreshSeed, setRefreshSeed] = useState(0);
   const [openedMember, setOpenedMember] = useState<TeamMember | null>(null);
@@ -189,6 +191,7 @@ const OurTeamBuilder = ({ menuId, pageKind = 'main' }: OurTeamBuilderProps) => {
     setImageFile(null);
     reset(mapIncomingToForm(payload));
     setRefreshSeed((v) => v + 1);
+    addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
     history.push(`/pages/${menuId}`);
   };
 
@@ -272,6 +275,10 @@ const OurTeamBuilder = ({ menuId, pageKind = 'main' }: OurTeamBuilderProps) => {
 
     createMutation.mutate(payload);
   };
+
+  if (isLoading || isMembersLoading) {
+    return <LoadingScreen/>
+  }
 
   if (!isFormMode) {
     return (
@@ -466,7 +473,7 @@ const TextInput = styled.input`
 const PreviewImage = styled.img`
   margin-top: 12px;
   width: 100%;
-  max-width: 420px;
+  max-width: 280px;
   border-radius: 8px;
   border: 1px solid #ddd;
   object-fit: cover;

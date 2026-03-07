@@ -8,7 +8,8 @@ import { MultiLangInput } from 'components/MutliLanguageInput';
 import { MultiLangTiptap } from 'components/MultiLangTiptap';
 import useQuery from 'hooks/useQueryCustom';
 import useMutationCustom from 'hooks/useMutationCustom';
-
+import LoadingScreen from 'components/Loading';
+import { useToasts } from 'react-toast-notifications';
 type LocalizedText = {
   ka: string;
   en: string;
@@ -70,6 +71,7 @@ const AboutPageBuilder = ({ menuId, pageKind = 'main' }: AboutPageBuilderProps) 
     defaultValues,
     mode: 'onBlur',
   });
+  const { addToast } = useToasts();
 
   const [aboutImageFile, setAboutImageFile] = useState<File | null>(null);
   const [aboutImageUrl, setAboutImageUrl] = useState<string>('');
@@ -101,6 +103,7 @@ const AboutPageBuilder = ({ menuId, pageKind = 'main' }: AboutPageBuilderProps) 
         setAboutImageUrl(payload.about_page_image || '');
         setAboutImageFile(null);
         reset(mapIncomingToForm(payload));
+        addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
       },
     }
   );
@@ -151,7 +154,9 @@ const AboutPageBuilder = ({ menuId, pageKind = 'main' }: AboutPageBuilderProps) 
 
     updateMutation.mutate(payload);
   };
-
+  if (isLoading) {
+    return <LoadingScreen/>
+  }
   return (
     <MainConatiner title='ჩვენ შესახებ გვერდის მართვა'>
       <Box component='form' onSubmit={handleSubmit(onSubmit)}>

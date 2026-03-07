@@ -7,6 +7,7 @@ import MainConatiner from 'partials/Container';
 import { MultiLangInput } from 'components/MutliLanguageInput';
 import useQuery from 'hooks/useQueryCustom';
 import useMutationCustom from 'hooks/useMutationCustom';
+import { useToasts } from 'react-toast-notifications';
 
 type LocalizedText = {
   ka: string;
@@ -57,6 +58,7 @@ const HomePageBuilder = ({ menuId, pageKind = 'main' }: HomePageBuilderProps) =>
     defaultValues,
     mode: 'onBlur',
   });
+  const { addToast } = useToasts();
 
   const [wallpaperFile, setWallpaperFile] = useState<File | null>(null);
   const [wallpaperUrl, setWallpaperUrl] = useState<string>('');
@@ -87,6 +89,7 @@ const HomePageBuilder = ({ menuId, pageKind = 'main' }: HomePageBuilderProps) =>
         const payload = response?.data?.content || {};
         setWallpaperUrl(payload.home_page_wallpaper || '');
         setWallpaperFile(null);
+        addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
         //reset(mapIncomingToForm(payload));
       },
     }

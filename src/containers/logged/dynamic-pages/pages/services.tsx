@@ -7,7 +7,8 @@ import MainConatiner from 'partials/Container';
 import { MultiLangTiptap } from 'components/MultiLangTiptap';
 import useQuery from 'hooks/useQueryCustom';
 import useMutationCustom from 'hooks/useMutationCustom';
-
+import LoadingScreen from 'components/Loading';
+import { useToasts } from 'react-toast-notifications';
 type LocalizedText = {
   ka: string;
   en: string;
@@ -57,6 +58,7 @@ const ServicePageBulder = ({ menuId }: ServicePageBuilderProps) => {
     defaultValues,
     mode: 'onBlur',
   });
+  const { addToast } = useToasts();
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string>('');
@@ -88,6 +90,7 @@ const ServicePageBulder = ({ menuId }: ServicePageBuilderProps) => {
         setImageUrl(payload.image || '');
         setImageFile(null);
         reset(mapIncomingToForm(payload));
+        addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
       },
     }
   );
@@ -129,7 +132,9 @@ const ServicePageBulder = ({ menuId }: ServicePageBuilderProps) => {
 
     updateMutation.mutate(payload);
   };
-
+  if (isLoading) {
+    return <LoadingScreen/>
+  }
   return (
     <MainConatiner title='სერვისის გვერდის მართვა'>
       <Box component='form' onSubmit={handleSubmit(onSubmit)}>
@@ -203,4 +208,3 @@ const PreviewImage = styled.img`
 `;
 
 export default ServicePageBulder;
-

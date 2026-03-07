@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 import useQuery from "hooks/useQueryCustom";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { CircularProgress } from '@mui/material';
 
 const NavigationMenu = () => {
     const [expandedMenus, setExpandedMenus] = useState<Record<number, boolean>>({});
 
-    const { data: item = [] } = useQuery<any>(["get_web_menus"], {
+    const { data: item = [], isLoading } = useQuery<any>(["get_web_menus"], {
         endpoint: `/menus`,
         options: { method: "get" },
     }, { enabled: true });
@@ -37,11 +38,11 @@ const NavigationMenu = () => {
                 <NavigationMenuLi>
                     <NavLink to="/news">სიახლეები</NavLink>
                 </NavigationMenuLi>
+                {!isLoading ? <>
                 <NavigationMenuLi>
                     <NavIsland>გვერდები</NavIsland>
                 </NavigationMenuLi>
                 {(item?.data ?? []).filter((x: any) => x.id_name !== 'contact_us' && x.id_name !== 'news_and_analytics').map((menu: any) => {
-                    console.log('menu', menu)
                     const menuId = menu?.id_name;
                     const isExpandable = menuId === 'services';
                     const isExpanded = Boolean(expandedMenus[menuId]);
@@ -76,6 +77,7 @@ const NavigationMenu = () => {
                         </NavigationMenuGroup>
                     );
                 })}
+                </> : <NavigationMenuLi><div id="Loading" style={{marginTop: 20, marginLeft: 90}}><CircularProgress/></div></NavigationMenuLi>}
             </NavigationMenuBlock>
         </Container>
     )

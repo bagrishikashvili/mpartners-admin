@@ -9,7 +9,8 @@ import { MultiLangInput } from "components/MutliLanguageInput";
 import useQuery from "hooks/useQueryCustom";
 import UniversalInput from "components/Input/UniversalInput";
 import useMutationCustom from "hooks/useMutationCustom";
-
+import LoadingScreen from "components/Loading";
+import { useToasts } from "react-toast-notifications";
 const languages = [
   { code: "ka", label: "ქართული", required: true },
   { code: "en", label: "ინგლისური" },
@@ -29,6 +30,7 @@ const normalizeName = (value: any) => ({
 
 const MenuControlEdit = () => {
   const history = useHistory();
+  const { addToast } = useToasts();
   const { id } = useParams<{ id: string }>();
 
 
@@ -69,6 +71,7 @@ const MenuControlEdit = () => {
     },
     {
       onSuccess: () => {
+        addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
         history.push("/menu-control");
       },
     }
@@ -112,6 +115,10 @@ const MenuControlEdit = () => {
       is_active: true,
     });
   };
+
+  if (detailsLoading) {
+    return <LoadingScreen/>
+  }
 
   return (
     <MainConatiner

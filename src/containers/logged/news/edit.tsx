@@ -10,6 +10,8 @@ import { MultiLangInput } from 'components/MutliLanguageInput';
 import useMutationCustom from 'hooks/useMutationCustom';
 import useQuery from 'hooks/useQueryCustom';
 import { MultiLangTiptap } from 'components/MultiLangTiptap';
+import LoadingScreen from 'components/Loading';
+import { useToasts } from 'react-toast-notifications';
 
 type LocalizedText = {
     ka: string;
@@ -63,6 +65,7 @@ const mapIncomingToForm = (item: any): FormValues => ({
 
 const NewsEdit = () => {
     const history = useHistory();
+    const { addToast } = useToasts();
     const { id } = useParams<{ id: string }>();
 
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -95,6 +98,7 @@ const NewsEdit = () => {
         },
         {
             onSuccess: () => {
+                addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
                 history.push('/news');
             },
         }
@@ -144,6 +148,9 @@ const NewsEdit = () => {
         updateStore.mutate(payload);
     };
 
+    if (isLoading) {
+        return <LoadingScreen/>
+    }
     return (
         <MainConatiner
             title='სიახლის რედაქტირება'

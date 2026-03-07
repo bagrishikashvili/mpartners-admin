@@ -11,6 +11,7 @@ import { MultiLangInput } from "components/MutliLanguageInput";
 import useQuery from "hooks/useQueryCustom";
 import UniversalInput from "components/Input/UniversalInput";
 import useMutationCustom from 'hooks/useMutationCustom';
+import { useToasts } from 'react-toast-notifications';
 
 const languages = [
   { code: "ka", label: "ქართული", required: true },
@@ -21,6 +22,7 @@ const languages = [
 ];
 const MenuControlCreate = () => {
     const history = useHistory();
+    const { addToast } = useToasts();
     const currentUser = useSelector(currentUserSelector);
     const { control, handleSubmit, register, setValue } = useForm<any>({
         defaultValues: {
@@ -42,6 +44,7 @@ const MenuControlCreate = () => {
         options: { method: "post" },
     }, {
         onSuccess: () => {
+            addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
             history.push('/menu-control');
         },
         onError: (err: any) => {

@@ -1,12 +1,8 @@
-import React, { useState, useEffect, Suspense } from "react"
 import { useSelector } from "react-redux";
 import { currentUserSelector } from "redux/selectors";
 import styled from "styled-components";
 import { useHistory } from 'react-router-dom';
-import CalendarView from "components/CalendarView";
-import { isEmpty } from "lodash";
-import EnumDropdown from "components/DropDowns/EnumDropdown";
-
+import MainConatiner from "partials/Container";
 const Dashobard = () => {
     const history = useHistory();
     const currentUser = useSelector(currentUserSelector);
@@ -14,9 +10,11 @@ const Dashobard = () => {
 
 
     return (
-        <Container>
+        <MainConatiner>
+            <FormBody>
 
-        </Container>
+            </FormBody>
+        </MainConatiner>
     )
 }
 const Container = styled('div') `
@@ -25,4 +23,10 @@ const Container = styled('div') `
     
 `
 
+const FormBody = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  height: calc(100vh - 130px);
+`;
 export default Dashobard;

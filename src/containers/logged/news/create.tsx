@@ -9,6 +9,7 @@ import UniversalInput from 'components/Input/UniversalInput';
 import { MultiLangInput } from 'components/MutliLanguageInput';
 import useMutationCustom from 'hooks/useMutationCustom';
 import { MultiLangTiptap } from 'components/MultiLangTiptap';
+import { useToasts } from 'react-toast-notifications';
 
 type LocalizedText = {
     ka: string;
@@ -43,6 +44,7 @@ const emptyLocalized = (): LocalizedText => ({
 
 const NewsCreate = () => {
     const history = useHistory();
+    const { addToast } = useToasts();
     const [imageFile, setImageFile] = useState<File | null>(null);
 
     const { control, handleSubmit, register } = useForm<FormValues>({
@@ -63,6 +65,7 @@ const NewsCreate = () => {
         },
         {
             onSuccess: () => {
+                addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
                 history.push('/news');
             },
         }

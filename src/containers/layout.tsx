@@ -7,6 +7,7 @@ import { getToken } from "lib/storage";
 import { ReactComponent as FlexupLogo } from 'assets/svg/logo-small.svg';
 import AuthHeader from "partials/headers/authHeader";
 import NavigationMenu from "partials/NavigationMenu";
+import { CircularProgress } from "@mui/material";
 
 const MainLayout = ({ children }: any) => {
   const currentUser = useSelector(currentUserSelector);
@@ -26,9 +27,7 @@ const MainLayout = ({ children }: any) => {
           </>
         : 
         <LoadingScreenContainer>
-          <div className="animate-flicker" style={{marginBottom: 50}}>
-            <img src={require('../assets/logo.png')} style={{width: 55}}/>
-          </div>
+          <CircularProgress/>
         </LoadingScreenContainer>}
     </Wrapper>
   );
@@ -86,7 +85,7 @@ const LoadingScreenContainer = styled.div`
    justify-content: center;
    align-items: center;
    flex: 1;
-   background-color: #1b5a93;
+   background-color: #fff;
 `;
 
 const FLexupText = styled.h1 `
