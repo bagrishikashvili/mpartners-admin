@@ -90,7 +90,7 @@ const HomePageBuilder = ({ menuId, pageKind = 'main' }: HomePageBuilderProps) =>
         setWallpaperUrl(payload.home_page_wallpaper || '');
         setWallpaperFile(null);
         addToast('მონაცემები შეინახა წარმატებით', { appearance: 'success', autoDismiss: true });
-        //reset(mapIncomingToForm(payload));
+        reset(mapIncomingToForm(payload));
       },
     }
   );
@@ -102,7 +102,7 @@ const HomePageBuilder = ({ menuId, pageKind = 'main' }: HomePageBuilderProps) =>
 
     const content = data.data?.content || {};
     setWallpaperUrl(content.home_page_wallpaper || '');
-    //reset(mapIncomingToForm(content));
+    reset(mapIncomingToForm(content));
   }, [data, reset]);
 
   const wallpaperPreview = useMemo(() => {
@@ -129,6 +129,12 @@ const HomePageBuilder = ({ menuId, pageKind = 'main' }: HomePageBuilderProps) =>
     if (wallpaperFile) {
       payload.append('home_page_wallpaper', wallpaperFile);
     }
+    payload.append(
+      'content',
+      JSON.stringify({
+        home_page_text: form.home_page_text,
+      })
+    );
 
     updateMutation.mutate(payload);
   };
@@ -142,6 +148,15 @@ const HomePageBuilder = ({ menuId, pageKind = 'main' }: HomePageBuilderProps) =>
             <FileInput type='file' accept='image/*' onChange={(e) => setWallpaperFile(e.target.files?.[0] || null)} />
             {wallpaperPreview ? <PreviewImage src={wallpaperPreview} alt='home wallpaper preview' /> : null}
           </SectionRow>
+                <SectionRow>
+                  <MultiLangInput
+                    control={control}
+                    name='home_page_text'
+                    label='ჩვენ შესახებ აღწერა'
+                    languages={languages}
+                    defaultLang='ka'
+                  />
+                </SectionRow>
         </FormBody>
         <ActionRow>
           <LoadingButton

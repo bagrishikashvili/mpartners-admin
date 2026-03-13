@@ -24,9 +24,6 @@ const NavigationMenu = () => {
         <Container>
             <NavigationMenuBlock>
                 <NavigationMenuLi>
-                    <NavLink to="/dashboard">მთავარი</NavLink>
-                </NavigationMenuLi>
-                <NavigationMenuLi>
                     <NavLink to="/menu-control">მენიუს კონტროლი</NavLink>
                 </NavigationMenuLi>
                 <NavigationMenuLi>
@@ -36,7 +33,7 @@ const NavigationMenu = () => {
                     <NavLink to="/recomendation">რეკომენდაციები</NavLink>
                 </NavigationMenuLi>
                 <NavigationMenuLi>
-                    <NavLink to="/news">სიახლეები</NavLink>
+                    <NavLink to="/news">ბლოგი</NavLink>
                 </NavigationMenuLi>
                 {!isLoading ? <>
                 <NavigationMenuLi>

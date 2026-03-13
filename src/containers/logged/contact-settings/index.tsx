@@ -25,6 +25,7 @@ type FormValues = {
   phones: PhoneItem[];
   email: string;
   address: { ka: string; en: string; ru: string; zh: string };
+  footer_text: { ka: string; en: string; ru: string; zh: string };
   social: {
     linkedin: string;
   };
@@ -37,6 +38,7 @@ const defaultValues: FormValues = {
   phones: [],
   email: '',
   address: { ka: '', en: '', ru: '', zh: '' },
+  footer_text: { ka: '', en: '', ru: '', zh: '' },
   social: {
     linkedin: '',
   },
@@ -53,6 +55,12 @@ const mapIncomingToForm = (data: any): FormValues => ({
     en: data?.address?.en || '',
     ru: data?.address?.ru || '',
     zh: data?.address?.zh || '',
+  },
+  footer_text: {
+    ka: data?.footer_text?.ka || '',
+    en: data?.footer_text?.en || '',
+    ru: data?.footer_text?.ru || '',
+    zh: data?.footer_text?.zh || '',
   },
   social: {
     linkedin: data?.social?.linkedin || '',
@@ -96,19 +104,6 @@ const ContactSettings = () => {
     }
   );
 
-  const deleteMutation = useMutationCustom<any, any, void>(
-    ['contact_settings_delete'],
-    {
-      endpoint: '/settings/contact',
-      options: { method: 'delete' },
-    },
-    {
-      onSuccess: (response: any) => {
-        reset(mapIncomingToForm(response?.data || defaultValues));
-      },
-    }
-  );
-
   useEffect(() => {
     if (!data?.data) {
       return;
@@ -118,10 +113,12 @@ const ContactSettings = () => {
   }, [data, reset]);
 
   const onSubmit = (form: FormValues) => {
+    debugger;
     const payload = {
       phones: form.phones.map((item) => item.value),
       email: form.email || null,
       address: form.address,
+      footer_text: form.footer_text,
       social: {
         linkedin: form.social.linkedin || null,
       },
@@ -184,6 +181,16 @@ const ContactSettings = () => {
             <Grid2>
               <UniversalInput label='ლინკდინი' size='small' {...register('social.linkedin')} />
             </Grid2>
+          </SectionRow>
+          <SectionRow>
+            <MultiLangInput
+              control={control}
+              name='footer_text'
+              label='ფუტერის ტექსტი'
+              languages={languages}
+              defaultLang='ka'
+              placeholder={() => 'შეიყვანე ფუტერის ტექსტი'}
+            />
           </SectionRow>
           <SectionRow>
             <SectionTitle>რუკა</SectionTitle>
