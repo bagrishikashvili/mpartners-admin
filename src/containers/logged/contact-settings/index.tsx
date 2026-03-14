@@ -31,6 +31,7 @@ type FormValues = {
   };
   map: {
     link: string;
+    address_link: string;
   };
 };
 
@@ -44,6 +45,7 @@ const defaultValues: FormValues = {
   },
   map: {
     link: '',
+    address_link: '',
   },
 };
 
@@ -67,6 +69,7 @@ const mapIncomingToForm = (data: any): FormValues => ({
   },
   map: {
     link: data?.map?.link || '',
+    address_link: data?.map?.address_link || '',
   },
 });
 
@@ -124,6 +127,7 @@ const ContactSettings = () => {
       },
       map: {
         link: form.map.link === '' ? null : form.map.link,
+        address_link: form.map.address_link === '' ? null : form.map.address_link,
       },
     };
 
@@ -195,7 +199,8 @@ const ContactSettings = () => {
           <SectionRow>
             <SectionTitle>რუკა</SectionTitle>
             <Grid2>
-              <UniversalInput label='Iframe ლინკი' size='small'{...register('map.link')} />
+              <UniversalInput label='Iframe ლინკი' size='small' {...register('map.link')} />
+              <UniversalInput label='მისამართის ლინკი' size='small' {...register('map.address_link')} />
             </Grid2>
           </SectionRow>
         </FormBody>
